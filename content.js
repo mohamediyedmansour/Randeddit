@@ -1,57 +1,51 @@
-(function () {
-  const INTERVAL = setInterval(() => {
-    // Main navbar button container
-    const navGroup = document.querySelector(
-      "div.ps-lg.gap-xs.flex.items-center.justify-end > div.flex.h-\\[40px\\]"
+(() => {
+  const BUTTON_ID = "reddit-random-btn";
+
+  function createButton() {
+    const span = document.createElement("span");
+    span.className = "hidden m:block contents";
+
+    span.innerHTML = `
+      <rpl-tooltip placement="bottom" appearance="inverted" trigger="hover focus-visible">
+        <button
+          id="${BUTTON_ID}"
+          class="button-medium px-[var(--rem8)] button-plain icon items-center justify-center button inline-flex"
+          aria-label="Random"
+          title="Random"
+        >
+          <svg fill="currentColor" width="20" height="20" viewBox="0 0 20 20">
+            <path d="M4 2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2z"/>
+          </svg>
+        </button>
+        <span slot="content">Random</span>
+      </rpl-tooltip>
+    `;
+
+    span.querySelector("button").onclick = () => {
+      window.location.href = "/r/random";
+    };
+
+    return span;
+  }
+
+  function inject() {
+    if (document.getElementById(BUTTON_ID)) return;
+
+    // This selector IS stable (confirmed by your logs)
+    const actionRow = document.querySelector(
+      "div.ps-lg.gap-xs.flex.items-center.justify-end"
     );
+    if (!actionRow) return;
 
-    if (!navGroup) return;
+    actionRow.prepend(createButton());
+  }
 
-    // Prevent duplicates
-    if (document.getElementById("reddit-random-btn")) {
-      clearInterval(INTERVAL);
-      return;
+  // Retry loop — cheap and reliable
+  let tries = 0;
+  const timer = setInterval(() => {
+    inject();
+    if (++tries > 20 || document.getElementById(BUTTON_ID)) {
+      clearInterval(timer);
     }
-
-    // Create wrapper span (matches Reddit structure)
-    const wrapper = document.createElement("span");
-    wrapper.className = "contents";
-
-    // Create button
-    const button = document.createElement("button");
-    button.id = "reddit-random-btn";
-    button.className = `
-      button-medium px-[var(--rem8)]
-      button-plain
-      icon
-      items-center justify-center
-      button inline-flex
-    `;
-
-    button.setAttribute("aria-label", "Random");
-    button.title = "Random";
-
-    // SVG icon (dice-style)
-    button.innerHTML = `
-      <span class="flex items-center justify-center">
-        <svg fill="currentColor" width="20" height="20" viewBox="0 0 20 20">
-          <path d="M4 2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2zm2.5 3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM6.5 10a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm2.5 3a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/>
-        </svg>
-      </span>
-    `;
-
-    // Click action
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.location.href = "https://google.com";
-    });
-
-    wrapper.appendChild(button);
-
-    // Insert before chat button (native placement)
-    const chatButton = navGroup.querySelector('[data-part="chat"]');
-    navGroup.insertBefore(wrapper, chatButton);
-
-    clearInterval(INTERVAL);
-  }, 500);
+  }, 300);
 })();
