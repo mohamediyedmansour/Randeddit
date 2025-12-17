@@ -11,10 +11,12 @@
           id="${BUTTON_ID}"
           class="button-medium px-[var(--rem8)] button-plain icon items-center justify-center button inline-flex"
           aria-label="Random"
-          title="Random"
         >
           <svg fill="currentColor" width="20" height="20" viewBox="0 0 20 20">
-            <path d="M4 2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2z"/>
+            <rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" fill="none" stroke-width="2"/>
+            <circle cx="6" cy="6" r="1.5" fill="currentColor"/>
+            <circle cx="10" cy="10" r="1.5" fill="currentColor"/>
+            <circle cx="14" cy="14" r="1.5" fill="currentColor"/>
           </svg>
         </button>
         <span slot="content">Random</span>
@@ -31,7 +33,6 @@
   function inject() {
     if (document.getElementById(BUTTON_ID)) return;
 
-    // This selector IS stable (confirmed by your logs)
     const actionRow = document.querySelector(
       "div.ps-lg.gap-xs.flex.items-center.justify-end"
     );
@@ -40,7 +41,6 @@
     actionRow.prepend(createButton());
   }
 
-  // Retry loop — cheap and reliable
   let tries = 0;
   const timer = setInterval(() => {
     inject();
