@@ -23,7 +23,7 @@ app.add_middleware(
 )
 
 SUBREDDIT_FILE = "./assets/subreddits.txt"
-TOTAL_LINES = 13575387  
+TOTAL_LINES = 4074185
 
 def get_random_line(file_path: str, line_number: int) -> str:
     with open(file_path, "r", encoding="utf-8") as f:
