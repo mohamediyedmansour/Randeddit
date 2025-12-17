@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  subreddit-api:
+    build: .
+    container_name: subreddit-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./assets:/app/assets:ro
