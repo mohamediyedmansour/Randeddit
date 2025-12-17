@@ -54,6 +54,11 @@ async def get_random_subreddit():
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
 
+@app.get("/health")
+@app.head("/health")
+async def health_check():
+    return {"status": "ok"}
+
 # uvicorn main:app --reload
 if __name__ == "__main__":
     import uvicorn
