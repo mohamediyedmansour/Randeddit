@@ -1,6 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="mt-8 text-center text-gray-500 text-sm">
+    <footer
+      className="mt-auto w-full text-center py-4 text-gray-700 text-sm"
+      style={{ fontFamily: "inherit" }}
+    >
       Made with <span className="text-red-500">❤️</span> by{" "}
       <a
         href="https://github.com/mohamediyedmansour"

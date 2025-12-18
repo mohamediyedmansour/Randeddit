@@ -1,11 +1,20 @@
-import GithubSar from "./GitHubStar";
+import { useEffect, useState } from "react";
+import GitHubRibbon from "./GitHubStar";
 import Footer from "./Footer";
+import NSFWWarning from "./NSFWWarning";
 
 export default function App() {
+  const [showWarning, setShowWarning] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowWarning(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 flex items-center justify-center p-8">
-      <div className="text-center">
-        {/* Logo */}
+    <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-orange-50 to-red-50 relative">
+      {/* Centered logo container */}
+      <div className="flex flex-col items-center justify-center flex-1 w-full">
         <div className="mb-8 inline-block">
           <svg
             width="300"
@@ -167,16 +176,18 @@ export default function App() {
           </svg>
         </div>
 
-        {/* Logo text */}
         <h1 className="text-5xl font-bold text-gray-900 mb-4">
           Random<span className="text-orange-600">dit</span>
         </h1>
-        <p className="text-xl text-gray-600">
+
+        <p className="text-xl text-gray-600 mb-4">
           Roll the dice, discover a new subreddit! 🎲
         </p>
-        <GithubSar />
-        <Footer />
+
+        {showWarning && <NSFWWarning />}
       </div>
+
+      <Footer />
     </div>
   );
 }

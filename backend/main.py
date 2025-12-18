@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import random
@@ -7,7 +7,7 @@ import os
 app = FastAPI(
     title="Random Subreddit API",
     description="A simple API to fetch a random subreddit from a huge list of subreddits.",
-    version="1.0.0"
+    version="1.1.0"
 )
 
 app.add_middleware(
@@ -46,11 +46,14 @@ def get_random_line(file_path: str) -> str:
         f.seek(offset)
         return f.readline().strip(), random_index
 
-@app.get("/get_sub", summary="Get a random subreddit", response_description="A random subreddit")
-async def get_random_subreddit():
+@app.get("/get_sub", summary="Get one or multiple random subreddits")
+async def get_random_subreddit(count: int = Query(1, ge=1, le=10, description="Number of subreddits to return (1-10)")):
     try:
-        subreddit, line_number = get_random_line(SUBREDDIT_FILE)
-        return {"subreddit": subreddit, "line_number": line_number}
+        results = []
+        for _ in range(count):
+            subreddit, line_number = get_random_line(SUBREDDIT_FILE)
+            results.append({"subreddit": subreddit, "line_number": line_number})
+        return results
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
 
