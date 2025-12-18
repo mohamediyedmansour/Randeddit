@@ -1,3 +1,6 @@
+import GithubSar from "./GitHubStar";
+import Footer from "./Footer";
+
 export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 flex items-center justify-center p-8">
@@ -171,6 +174,8 @@ export default function App() {
         <p className="text-xl text-gray-600">
           Roll the dice, discover a new subreddit! 🎲
         </p>
+        <GithubSar />
+        <Footer />
       </div>
     </div>
   );
