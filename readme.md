@@ -10,10 +10,10 @@ It adds a **Random** button directly into Reddit’s UI and also provides a popu
 ## ✨ Features
 
 - 🎲 One‑click random subreddit discovery
-- 🧠 Prefetching for instant navigation (no waiting)
-- 🧩 Seamless Reddit UI integration (native‑feeling button)
+- 🧠 Prefetching for instant navigation
+- 🧩 Seamless Reddit UI integration
 - 🚀 Fast backend powered by Docker
-- 📊 Large dataset of scraped subreddits (name, members, description)
+- 📊 Large dataset of scraped subreddits
 
 ---
 
