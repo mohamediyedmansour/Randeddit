@@ -7,6 +7,10 @@
   "background": {
     "service_worker": "background.js"
   },
+  "action": {
+    "default_title": "Randomdit",
+    "default_popup": "/popup/index.html"
+  },
   "content_scripts": [
     {
       "matches": ["https://www.reddit.com/*"],
