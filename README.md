@@ -3,7 +3,7 @@
 **Randomdit** is a Chrome extension + backend service that lets you instantly discover random subreddits.
 It adds a **Random** button directly into Reddit’s UI and also provides a popup experience powered by a custom backend API.
 
-> 🎥 **Demo video**: _Coming soon_ (placeholder — will be added here)
+![Randeddit Demo](https://github.com/mohamediyedmansour/Randeddit/blob/main/web/public/demo_vid.gif?raw=true)
 
 ---
 
