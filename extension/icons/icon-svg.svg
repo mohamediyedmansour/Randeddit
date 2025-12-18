@@ -1,0 +1,49 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-2xl">
+  <ellipse cx="150" cy="160" rx="60" ry="65" fill="#FF4500"></ellipse>
+  <circle cx="150" cy="120" r="45" fill="#FF4500"></circle>
+  <circle cx="135" cy="115" r="8" fill="white"></circle>
+  <circle cx="165" cy="115" r="8" fill="white"></circle>
+  <circle cx="137" cy="115" r="4" fill="#1a1a1b"></circle>
+  <circle cx="167" cy="115" r="4" fill="#1a1a1b"></circle>
+  <path d="M 135 130 Q 150 140 165 130" stroke="#1a1a1b" stroke-width="3" fill="none" stroke-linecap="round"></path>
+  <line x1="150" y1="75" x2="150" y2="45" stroke="#FF4500" stroke-width="4"></line>
+  <g transform="rotate(25 150 30)">
+    <rect x="135" y="15" width="30" height="30" rx="4" fill="#FFD635" stroke="#1a1a1b" stroke-width="2"></rect>
+    <circle cx="142" cy="22" r="2.5" fill="#1a1a1b"></circle>
+    <circle cx="142" cy="30" r="2.5" fill="#1a1a1b"></circle>
+    <circle cx="142" cy="38" r="2.5" fill="#1a1a1b"></circle>
+    <circle cx="158" cy="22" r="2.5" fill="#1a1a1b"></circle>
+    <circle cx="158" cy="30" r="2.5" fill="#1a1a1b"></circle>
+    <circle cx="158" cy="38" r="2.5" fill="#1a1a1b"></circle>
+  </g>
+  <ellipse cx="95" cy="160" rx="15" ry="30" fill="#FF4500" transform="rotate(-30 95 160)"></ellipse>
+  <g transform="rotate(-15 75 155)">
+    <rect x="60" y="140" width="28" height="28" rx="3" fill="#FFD635" stroke="#1a1a1b" stroke-width="2"></rect>
+    <circle cx="67" cy="147" r="2" fill="#1a1a1b"></circle>
+    <circle cx="74" cy="154" r="2" fill="#1a1a1b"></circle>
+    <circle cx="81" cy="161" r="2" fill="#1a1a1b"></circle>
+  </g>
+  <ellipse cx="205" cy="160" rx="15" ry="30" fill="#FF4500" transform="rotate(30 205 160)"></ellipse>
+  <g transform="rotate(15 225 155)">
+    <rect x="212" y="140" width="28" height="28" rx="3" fill="#FFD635" stroke="#1a1a1b" stroke-width="2"></rect>
+    <circle cx="219" cy="147" r="2" fill="#1a1a1b"></circle>
+    <circle cx="233" cy="147" r="2" fill="#1a1a1b"></circle>
+    <circle cx="226" cy="154" r="2" fill="#1a1a1b"></circle>
+    <circle cx="219" cy="161" r="2" fill="#1a1a1b"></circle>
+    <circle cx="233" cy="161" r="2" fill="#1a1a1b"></circle>
+  </g>
+  <circle cx="110" cy="100" r="12" fill="#FF4500"></circle>
+  <circle cx="190" cy="100" r="12" fill="#FF4500"></circle>
+  <ellipse cx="130" cy="215" rx="20" ry="12" fill="#FF4500"></ellipse>
+  <ellipse cx="170" cy="215" rx="20" ry="12" fill="#FF4500"></ellipse>
+  <g opacity="0.8">
+    <rect x="35" y="220" width="20" height="20" rx="2" fill="#FFD635" stroke="#1a1a1b" stroke-width="1.5" transform="rotate(20 45 230)"></rect>
+    <circle cx="45" cy="230" r="1.5" fill="#1a1a1b"></circle>
+  </g>
+  <g opacity="0.8">
+    <rect x="245" y="220" width="20" height="20" rx="2" fill="#FFD635" stroke="#1a1a1b" stroke-width="1.5" transform="rotate(-20 255 230)"></rect>
+    <circle cx="250" cy="225" r="1.5" fill="#1a1a1b"></circle>
+    <circle cx="260" cy="225" r="1.5" fill="#1a1a1b"></circle>
+    <circle cx="255" cy="235" r="1.5" fill="#1a1a1b"></circle>
+  </g>
+</svg>

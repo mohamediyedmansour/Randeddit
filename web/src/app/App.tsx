@@ -3,19 +3,63 @@ import GitHubRibbon from "./GitHubStar";
 import Footer from "./Footer";
 import NSFWWarning from "./NSFWWarning";
 
+interface Subreddit {
+  subreddit: string;
+  line_number: number;
+}
+
 export default function App() {
+  const [subreddits, setSubreddits] = useState<Subreddit[]>([]);
   const [showWarning, setShowWarning] = useState(false);
 
+  // Animate NSFW warning on mount
   useEffect(() => {
     const timer = setTimeout(() => setShowWarning(true), 300);
     return () => clearTimeout(timer);
   }, []);
 
+  // Fetch subreddits
+  const fetchSubreddits = async (count = 10) => {
+    try {
+      const res = await fetch(
+        `https://randeddit-api.iyed.space/get_sub?count=${count}`
+      );
+      const data: Subreddit[] = await res.json();
+      setSubreddits((prev) => [...prev, ...data]);
+    } catch (error) {
+      console.error("Failed to fetch subreddits:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSubreddits();
+  }, []);
+
+  // Ensure at least 5 subreddits
+  useEffect(() => {
+    if (subreddits.length < 5) {
+      fetchSubreddits();
+    }
+  }, [subreddits]);
+
+  // Handle logo click
+  const handleClick = () => {
+    if (subreddits.length === 0) return;
+    const sub = subreddits.shift();
+    setSubreddits([...subreddits]);
+    if (sub) {
+      window.open(`https://reddit.com/r/${sub.subreddit}`, "_blank");
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-orange-50 to-red-50 relative">
       {/* Centered logo container */}
       <div className="flex flex-col items-center justify-center flex-1 w-full">
-        <div className="mb-8 inline-block">
+        <div
+          className="mb-8 inline-block cursor-pointer animate-breathe"
+          onClick={handleClick}
+        >
           <svg
             width="300"
             height="300"

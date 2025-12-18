@@ -194,3 +194,17 @@
 .animate-fadeIn {
   animation: fadeIn 0.7s forwards;
 }
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-breathe {
+  animation: breathe 2s ease-in-out infinite;
+}
