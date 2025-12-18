@@ -48,7 +48,11 @@ def get_random_line(file_path: str) -> str:
     offset = line_offsets[random_index]
     with open(file_path, "r", encoding="utf-8") as f:
         f.seek(offset)
-        return f.readline().strip(), random_index
+        line = f.readline().strip()
+        # Strip r/ if present
+        if line.lower().startswith("r/"):
+            line = line[2:]
+        return line, random_index
 
 # CSV indexing for fast search
 def build_csv_index(file_path: str):
@@ -81,9 +85,10 @@ if os.path.exists(CSV_FILE):
 else:
     raise FileNotFoundError(f"{CSV_FILE} not found!")
 
-def get_subreddit_info(subreddit_name: str):
+def get_subreddit_info(subreddit_name: str, include_r_prefix: bool = True):
     """
     Retrieve subreddit info from CSV by using the index.
+    include_r_prefix: True for search (keep r/), False for random (strip r/)
     """
     key = subreddit_name.lower().lstrip("r/")
     if key not in csv_index:
@@ -96,8 +101,11 @@ def get_subreddit_info(subreddit_name: str):
             return None
         reader = csv.DictReader([line], fieldnames=["subreddit", "members", "description"])
         row = next(reader)
+        sub_name = row['subreddit']
+        if not include_r_prefix:
+            sub_name = sub_name.lstrip("r/")
         return {
-            "subreddit": row['subreddit'],
+            "subreddit": sub_name,
             "members": int(row['members']),
             "description": row['description']
         }
@@ -109,16 +117,16 @@ async def get_random_subreddit(count: int = Query(1, ge=1, le=10, description="N
         results = []
         for _ in range(count):
             subreddit_name, line_number = get_random_line(SUBREDDIT_FILE)
-            info = get_subreddit_info(subreddit_name)
+            info = get_subreddit_info(subreddit_name, include_r_prefix=False)
             if info:
                 info["line_number"] = line_number
                 results.append(info)
             else:
-                # if CSV info not found
                 results.append({"subreddit": subreddit_name, "line_number": line_number})
         return results
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
+
 
 @app.get("/search_sub", summary="Search for a subreddit by name")
 async def search_sub(subreddit: str = Query(..., description="Subreddit name to search for, e.g., feedthebeast")):
