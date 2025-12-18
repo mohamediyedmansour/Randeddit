@@ -36,7 +36,10 @@
 
   "permissions": ["tabs", "scripting"],
 
-  "host_permissions": ["https://www.reddit.com/*"],
+  "host_permissions": [
+    "https://www.reddit.com/*",
+    "https://randeddit-api.iyed.space/*"
+  ],
 
   "homepage_url": "https://randeddit.iyed.space/",
 
