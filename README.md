@@ -129,6 +129,5 @@ Includes:
 - Chrome extension: ✅ Stable
 - Backend API: ✅ Stable
 - Firefox support: 🚧 In progress
-- Demo video: ⏳ Coming soon
 
 ---
